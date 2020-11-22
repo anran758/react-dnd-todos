@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Todos from "./todos";
+import { render} from "react-dom";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+
+import Todos from "./pages/Todos";
 
 function App() {
   return (
@@ -14,5 +14,4 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+render(<App />, document.getElementById("root"));
