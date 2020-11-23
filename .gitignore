@@ -105,3 +105,6 @@ dist
 
 # macos
 .DS_Store
+
+# build dir
+build/
