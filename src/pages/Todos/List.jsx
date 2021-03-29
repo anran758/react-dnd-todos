@@ -118,20 +118,39 @@ const Container = memo(() => {
    * @desc 完成后将自动将任务推到队尾
    */
   const handleCompolate = (id) => {
-    const cardIndex = todosIds.findIndex((item) => item === id);
+    const data = todosMapping[id];
+    console.log('data', data);
+    if (!data) return;
 
-    scheduleUpdate({
-      todosIds: {
-        $splice: [[cardIndex, 1]],
-        $push: [id],
-      },
+    let info = {
       todosMapping: {
         [id]: {
           $toggle: ['complate'],
           active: { $set: false },
         },
       },
-    });
+    };
+
+    const currentIdx = todosIds.findIndex((item) => item === id);
+
+    if (!data.complate) {
+      info.todosIds = {
+        $splice: [[currentIdx, 1]],
+        $push: [id],
+      };
+    } else {
+      let insertIdx = todosIds.findIndex((key) => !todosMapping[key].active);
+      if (insertIdx === -1) insertIdx = 0;
+
+      info.todosIds = {
+        $splice: [
+          [currentIdx, 1],
+          [insertIdx, 0, id],
+        ],
+      };
+    }
+
+    scheduleUpdate(info);
   };
 
   const handleClose = (id) => {
@@ -150,7 +169,8 @@ const Container = memo(() => {
 
   // 组件初始化完毕
   useEffect(() => {
-    const todosMapping = JSON.parse(localStorage.getItem(STORE_MAPPING_KEY)) || dataByMapping;
+    const todosMapping =
+      JSON.parse(localStorage.getItem(STORE_MAPPING_KEY)) || dataByMapping;
     const todosIds = JSON.parse(localStorage.getItem(STORE_LIST_KEY)) || dataByIds;
 
     setTodosMapping(todosMapping);
@@ -166,7 +186,7 @@ const Container = memo(() => {
   useEffect(() => {
     localStorage.setItem(STORE_MAPPING_KEY, JSON.stringify(todosMapping));
   }, [todosMapping]);
-  console.log('todosIds and todosMapping', todosIds, todosMapping);
+  // console.log('todosIds and todosMapping', todosIds, todosMapping);
 
   return (
     <section>
