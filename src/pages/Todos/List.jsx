@@ -1,8 +1,11 @@
-import React, { useEffect, useState, memo, useRef, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, memo, useRef } from 'react';
 import update from 'immutability-helper';
 import { generate } from 'shortid';
+import { generatorMockData } from './mock';
 
 import Item from './Item';
+
+const { dataByIds, dataByMapping } = generatorMockData();
 
 const STORE_LIST_KEY = 'TODO_STORE_LIST';
 const STORE_MAPPING_KEY = 'TODO_STORE_MAPPING';
@@ -20,11 +23,6 @@ const Container = memo(() => {
   const requestedFrame = useRef();
 
   /**
-   * 触发数据更新
-   */
-  // const drawFrame = ;
-
-  /**
    * 准备触发视图更新
    */
   const scheduleUpdate = (updateSpecifics) => {
@@ -33,7 +31,6 @@ const Container = memo(() => {
     if (!requestedFrame.current) {
       requestedFrame.current = requestAnimationFrame(() => {
         const payload = specifics.current;
-        console.log('drawFrame --> ', payload);
         if (!payload) return;
 
         if (payload.todosMapping) {
@@ -46,8 +43,10 @@ const Container = memo(() => {
           setTodosIds(nextData);
         }
 
+        // reset status
         specifics.current = undefined;
         requestedFrame.current = undefined;
+
         console.log('================== drawFrame end ==================');
       });
     }
@@ -71,6 +70,7 @@ const Container = memo(() => {
       todosIds: { $unshift: [data.id] },
       todosMapping: { [data.id]: { $set: data } },
     });
+
     setText('');
   };
 
@@ -81,7 +81,6 @@ const Container = memo(() => {
     if (e.key !== 'Enter') return;
 
     handleAdd();
-    setText('');
   };
 
   /**
@@ -151,8 +150,8 @@ const Container = memo(() => {
 
   // 组件初始化完毕
   useEffect(() => {
-    const todosMapping = JSON.parse(localStorage.getItem(STORE_MAPPING_KEY)) || {};
-    const todosIds = JSON.parse(localStorage.getItem(STORE_LIST_KEY)) || [];
+    const todosMapping = JSON.parse(localStorage.getItem(STORE_MAPPING_KEY)) || dataByMapping;
+    const todosIds = JSON.parse(localStorage.getItem(STORE_LIST_KEY)) || dataByIds;
 
     setTodosMapping(todosMapping);
     setTodosIds(todosIds);
