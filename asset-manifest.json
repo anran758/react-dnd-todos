@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/react-dnd-todos/static/css/main.1b29e84b.chunk.css",
-    "main.js": "/react-dnd-todos/static/js/main.f7fc193a.chunk.js",
-    "main.js.map": "/react-dnd-todos/static/js/main.f7fc193a.chunk.js.map",
+    "main.js": "/react-dnd-todos/static/js/main.cb52cc98.chunk.js",
+    "main.js.map": "/react-dnd-todos/static/js/main.cb52cc98.chunk.js.map",
     "runtime-main.js": "/react-dnd-todos/static/js/runtime-main.2298b6e4.js",
     "runtime-main.js.map": "/react-dnd-todos/static/js/runtime-main.2298b6e4.js.map",
-    "static/js/2.6b3c4aed.chunk.js": "/react-dnd-todos/static/js/2.6b3c4aed.chunk.js",
-    "static/js/2.6b3c4aed.chunk.js.map": "/react-dnd-todos/static/js/2.6b3c4aed.chunk.js.map",
+    "static/js/2.21ccb72e.chunk.js": "/react-dnd-todos/static/js/2.21ccb72e.chunk.js",
+    "static/js/2.21ccb72e.chunk.js.map": "/react-dnd-todos/static/js/2.21ccb72e.chunk.js.map",
     "index.html": "/react-dnd-todos/index.html",
     "static/css/main.1b29e84b.chunk.css.map": "/react-dnd-todos/static/css/main.1b29e84b.chunk.css.map",
-    "static/js/2.6b3c4aed.chunk.js.LICENSE.txt": "/react-dnd-todos/static/js/2.6b3c4aed.chunk.js.LICENSE.txt"
+    "static/js/2.21ccb72e.chunk.js.LICENSE.txt": "/react-dnd-todos/static/js/2.21ccb72e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2298b6e4.js",
-    "static/js/2.6b3c4aed.chunk.js",
+    "static/js/2.21ccb72e.chunk.js",
     "static/css/main.1b29e84b.chunk.css",
-    "static/js/main.f7fc193a.chunk.js"
+    "static/js/main.cb52cc98.chunk.js"
   ]
 }
